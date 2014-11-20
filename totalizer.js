@@ -1,68 +1,50 @@
 // (function(){
 
-  updateTotalizer(333);
+  var TOTAL_ANIM_DURATION = 20 * 60; // in secs
+  var PAUSE_SCHEDULE = 5 * 1000; // in milliseconds
+  var RESUME_SCHEDULE = 7 * 1000; // in milliseconds
 
-  function updateTotalizer(newAmount) {
-    console.log("==== updateTotalizer: "+ newAmount +" ====");
-    var amtArray = splitIntoArray(newAmount);
-    var currDigitLength = document.querySelectorAll("#amount .digit").length;
-    var digitSlots = document.querySelectorAll("#amount .digit");
-    var numUpdated = 0;
+  var balance = 76138;
+  var startPoint = balance - Math.ceil(Math.random()*2000);
+  var countUpAnim;
+  var intervalID;
 
-    // updating digits from the smallest to the largest
-    // ie. from digit in ones and then digit in tens etc
-    for (var i=0; i < amtArray.length; i++ ) {
-      var slotIdxToUpdate = (currDigitLength-1)-numUpdated;
-      var currSlot;
-      if ( slotIdxToUpdate >= 0 ) {
-        console.log("IF");
-        digitSlots[slotIdxToUpdate].textContent = amtArray[i];
-        currSlot = digitSlots[slotIdxToUpdate];
-      } else {
-        console.log("ELSE");
-        document.querySelector("#amount").insertAdjacentHTML("afterbegin", "<div class='digit'>"+ amtArray[i] +"</div>");
-        currSlot = document.querySelector("#amount .digit");
-      }
-      // add comma
-      if ( i%3 == 2 && i != amtArray.length-1 ) {
-        var prevSibling = currSlot.previousElementSibling;
-        if ( !prevSibling || ( prevSibling && prevSibling.textContent != ',' ) ) {
-          currSlot.insertAdjacentHTML("beforebegin", "<div class='comma'>,</div>");
-        }
-      }
+  var amountUI = document.querySelector("#totalizer #amount");
+  console.log("balance = " + balance);
+  console.log("startPoint = " + startPoint);
+  animation(amountUI, startPoint, balance, function() {
+    console.log("animation callback===");
+  });
 
-      numUpdated++;
-      // console.log(numUpdated);
-    };
 
-  }
-
-  function splitIntoArray(amount) {
-    console.log("==== splitIntoArray ====");
-    var amtArray = [];
-    while( amount ) {
-      amtArray.push(amount%10);
-      amount = Math.floor(amount/10);
-    }
-    console.log(amtArray);
-    return amtArray;
-  }
-
-  function rollingEffect(slot, callback) {
-    console.log("=======rollingEffect======");
-    var y = 0;
-
-    // window.setInterval(function() {
-    //     $(slot).css("backgroundPosition", '0' + ' ' + ((-800)+y) + "px");
-    //     y += y+50;
-    // }, 300);
-
-    $(slot).animate({
-      backgroundPosition: "0 0"
-    }, 2000, function(){
-      // alert("hi");
+  function animation(elem, startVal, endVal, duration) {
+    countUpAnim = new countUp(
+                            amountUI, // element to animate
+                            startVal, // start value
+                            endVal, // end value
+                            0, // # of decimal
+                            TOTAL_ANIM_DURATION // duration
+                    );
+    regularlyPause();
+    countUpAnim.start(function() {
+      countUpAnim = null;
+      clearInterval(intervalID);
     });
+  }
 
+  function pauseAnim(){
+    console.log("= pauseAnim =");
+    countUpAnim.stop();
+    setTimeout(resumeAnim, RESUME_SCHEDULE);
+  }
+
+  function resumeAnim() {
+    console.log("= resumeAnim =");
+    countUpAnim.resume();
+  }
+
+  function regularlyPause() {
+    intervalID= setInterval(pauseAnim, PAUSE_SCHEDULE);
   }
 
 // })();
