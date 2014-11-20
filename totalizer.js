@@ -1,8 +1,8 @@
 // (function(){
 
-  var TOTAL_ANIM_DURATION = 20 * 60; // in secs
-  var PAUSE_SCHEDULE = 5 * 1000; // in milliseconds
-  var RESUME_SCHEDULE = 7 * 1000; // in milliseconds
+  var TOTAL_ANIM_DURATION = 10 * 60; // in secs
+  var PAUSE_SCHEDULE = 7 * 1000; // in milliseconds
+  var RESUME_SCHEDULE = 5 * 1000; // in milliseconds
 
   var balance = 76138;
   var startPoint = balance - Math.ceil(Math.random()*2000);
