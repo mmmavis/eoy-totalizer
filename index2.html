@@ -4,6 +4,7 @@
     <title>EOY Totalizer</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="odometer-theme-minimal.css">
     <style type="text/css">
       body {
         background: #000;
@@ -50,35 +51,30 @@
       #totalizer small {
         font-size: 15px;
       }
+      .odometer {
+        letter-spacing: 3px;
+      }
     </style>
   </head>
 
   <body>
     <div style="margin: 0 auto; text-align: center;">
       <h6>
-        Approach 1
-        <a href="index2.html">⇢</a>
+        <a href="index.html">⇠</a>
+        Approach 2
       </h6>
       <h5>using fake data below</h5>
       <div id="totalizer">
         $
-        <div id="amount">
-          <!-- <div class="digit">1</div>
-          <div class="comma">,</div>
-          <div class="digit">2</div>
-          <div class="digit">3</div>
-          <div class="digit">4</div> -->
+        <div id="odometer" class="odometer">
+          1000
         </div>
         <small>USD</small>
       </div>
     </div>
 
-    <!--
-    <script src="jquery-2.1.1.min.js"></script>
-    <script src="jquery.backgroundpos.min.js"></script>
-    -->
-    <script src="countUp.min.js"></script>
-    <script src="totalizer.js"></script>
+    <script src="odometer.min.js"></script>
+    <script src="totalizer2.js"></script>
   </body>
 
 </html>
