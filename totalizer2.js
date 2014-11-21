@@ -1,11 +1,11 @@
 var amountUI = document.querySelector(".odometer");
 var balance = 76138;
-var currVal = balance - Math.ceil(Math.random()*2000);
+var currVal = balance - (2000+Math.ceil(Math.random()*3000));
 
 document.querySelector(".odometer").textContent = currVal;
 
 var intervalID = setInterval(function(){
-  currVal += parseInt((Math.random() * 200));
+  currVal += parseInt((Math.random() * 100));
   console.log(currVal);
   if ( currVal <= balance ) {
     document.querySelector(".odometer").textContent = currVal;
@@ -13,7 +13,7 @@ var intervalID = setInterval(function(){
     console.log("don't update");
     killIt();
   }
-}, 10000);
+}, 4000);
 
 
 function killIt() {

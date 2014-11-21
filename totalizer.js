@@ -5,7 +5,7 @@
   var RESUME_SCHEDULE = 5 * 1000; // in milliseconds
 
   var balance = 76138;
-  var startPoint = balance - Math.ceil(Math.random()*2000);
+  var startPoint = balance - (2000+Math.ceil(Math.random()*3000));
   var countUpAnim;
   var intervalID;
 
