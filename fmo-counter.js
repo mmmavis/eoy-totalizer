@@ -11,7 +11,7 @@
   var INITIAL_TICK_DELAY = 1500; // in milliseconds
   var TICK_ADDI_BASE = 20;
   var TICK_ADDI_RANGE = 30;
-  var TICKER_INTERVAL = parseInt(0+Math.random()*1000); // in milliseconds
+  var TICKER_INTERVAL = parseInt(15000+Math.random()*15000); // in milliseconds
   console.log("ticks every " + (TICKER_INTERVAL/1000) + " secs");
 
   var xhr = new XMLHttpRequest();
