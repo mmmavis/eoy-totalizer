@@ -11,7 +11,7 @@
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "fmo-counter.json", true);
   xhr.onload = function () {
-    var paypalData = JSON.parse(xhr.responseText);
+    var paypalData = xhr.responseText;
     console.log(paypalData);
     balance = paypalData.amount;
     currVal = balance - (2000+Math.ceil(Math.random()*3000));
